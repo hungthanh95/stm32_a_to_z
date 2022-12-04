@@ -36,7 +36,7 @@ CFLAGS += -fmessage-length=0
 CFLAGS += --specs=nosys.specs
 
 # Linker directives
-LSCRIPT = ./$(LD_SCRIPT)
+LSCRIPT = ./linker/$(LD_SCRIPT)
 LFLAGS += -mcpu=$(MCU_SPEC)
 LFLAGS += -mthumb
 LFLAGS += -Wall
@@ -45,9 +45,13 @@ LFLAGS += -nostdlib
 LFLAGS += -lgcc
 LFLAGS += -T$(LSCRIPT)
 
-VECT_TBL = ./vector_table.s
-AS_SRC = ./core.s
-C_SRC = ./main.c
+VECT_TBL = ./startup/vector_table.s
+AS_SRC = ./startup/startup.s
+C_SRC = ./app/src/main.c
+
+INCLUDE += -I./device_headers
+INCLUDE += -I./drivers/include
+INCLUDE = -I./app/include
 
 OBJS = $(VECT_TBL:.s=.o)
 OBJS += $(AS_SRC:.s=.o)
