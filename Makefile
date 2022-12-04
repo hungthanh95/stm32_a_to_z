@@ -1,5 +1,7 @@
 TARGET = main
 
+EXAMPLE = ex1_gpio
+
 # Define the linker script location and chip archtecture
 LD_SCRIPT = STM32F429.ld
 MCU_SPEC = cortex-m4
@@ -45,15 +47,17 @@ LFLAGS += -nostdlib
 LFLAGS += -lgcc
 LFLAGS += -T$(LSCRIPT)
 
-VECT_TBL = ./startup/vector_table.s
 AS_SRC = ./startup/startup.s
+AS_SRC += ./startup/vector_table.s
 C_SRC = ./app/src/main.c
+C_SRC += ./example/$(EXAMPLE)/$(EXAMPLE).c
 
+INCLUDE = -I./
+INCLUDE += -I./app/include
 INCLUDE += -I./device_headers
 INCLUDE += -I./drivers/include
-INCLUDE = -I./app/include
+INCLUDE += -I./example/$(EXAMPLE)
 
-OBJS = $(VECT_TBL:.s=.o)
 OBJS += $(AS_SRC:.s=.o)
 OBJS += $(C_SRC:.c=.o)
 
@@ -63,8 +67,9 @@ all: $(TARGET).bin
 %.o: %.s
 	$(CC) -x assembler-with-cpp $(ASFLAGS) $< -o $@
 
-$.o: %.c
+%.o: %.c
 	$(CC) -c $(CFLAGS) $(INCLUDE) $< -o $@
+
 
 $(TARGET).elf: $(OBJS)
 	$(CC) $^ $(LFLAGS) -o $@
@@ -75,4 +80,5 @@ $(TARGET).bin: $(TARGET).elf
 .PHONY: clean
 clean:
 	rm -f $(OBJS)
+	rm -f $(TARGET).bin
 	rm -f $(TARGET).elf
