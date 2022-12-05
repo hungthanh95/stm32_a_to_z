@@ -1,5 +1,5 @@
-#ifndef __EX1_GPIO_H
-#define __EX1_GPIO_H
+#ifndef __EX2_INT_H
+#define __EX2_INT_H
 
 #include "main.h"
 
@@ -9,4 +9,6 @@
 
 extern void RunApp(void);
 
-#endif /*__EX1_GPIO_H */
+volatile uint8_t Led_on;
+
+#endif /*__EX2_INT_H */

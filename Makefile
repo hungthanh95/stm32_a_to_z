@@ -1,6 +1,6 @@
 TARGET = main
 
-EXAMPLE = ex1_gpio
+EXAMPLE = ex2_int
 
 # Define the linker script location and chip archtecture
 LD_SCRIPT = STM32F429.ld

@@ -1,5 +1,4 @@
 #include "ex1_gpio.h"
-#include "main.h"
 
 static void Init_GPIO();
 
