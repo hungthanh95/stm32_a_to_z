@@ -1,6 +1,10 @@
 TARGET = main
 
+# change this variable when change example
 EXAMPLE = ex3_sysclk
+
+# change this variable when change chip device
+FREERTOS_PORTABLE_DEVICE = GCC_ARM_CM4_MPU
 
 # Define the linker script location and chip archtecture
 LD_SCRIPT = STM32F429.ld
@@ -49,6 +53,18 @@ LFLAGS += -T$(LSCRIPT)
 
 AS_SRC = ./startup/startup.s
 AS_SRC += ./startup/vector_table.s
+
+#src freertos
+C_SRC = ./freertos/portable/$(FREERTOS_PORTABLE_DEVICE)/port.c
+C_SRC += ./freertos/src/croutine.c
+C_SRC = ./freertos/src/event_groups.c
+C_SRC = ./freertos/src/list.c
+C_SRC = ./freertos/src/queue.c
+C_SRC = ./freertos/src/stream_buffer.c
+C_SRC = ./freertos/src/tasks.c
+C_SRC = ./freertos/src/timers.c
+
+# main app
 C_SRC = ./app/src/main.c
 C_SRC += ./example/$(EXAMPLE)/$(EXAMPLE).c
 
@@ -56,6 +72,8 @@ INCLUDE = -I./
 INCLUDE += -I./app/include
 INCLUDE += -I./device_headers
 INCLUDE += -I./drivers/include
+INCLUDE += -I./freertos/include
+INCLUDE += -I./freertos/portable/$(FREERTOS_PORTABLE_DEVICE)
 INCLUDE += -I./example/$(EXAMPLE)
 
 OBJS += $(AS_SRC:.s=.o)
