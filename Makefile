@@ -1,6 +1,6 @@
 TARGET = main
 
-EXAMPLE = ex2_int
+EXAMPLE = ex3_sysclk
 
 # Define the linker script location and chip archtecture
 LD_SCRIPT = STM32F429.ld
