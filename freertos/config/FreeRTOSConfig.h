@@ -31,26 +31,14 @@
 #define configUSE_PREEMPTION                    1
 #define configUSE_PORT_OPTIMISED_TASK_SELECTION 0
 #define configUSE_TICKLESS_IDLE                 0
-#ifdef VVC_F0
-  #define configCPU_CLOCK_HZ              ( ( unsigned long ) 48000000 )  
-  #define configSYSTICK_CLOCK_HZ          ( configCPU_CLOCK_HZ / 8 )
-#elif  VVC_F1
-  #define configCPU_CLOCK_HZ              ( ( unsigned long ) 72000000 )  
-  #define configSYSTICK_CLOCK_HZ          ( configCPU_CLOCK_HZ / 8 )
-#elif  VVC_F3
-  #define configCPU_CLOCK_HZ              ( ( unsigned long ) 8000000 )  
-  #define configSYSTICK_CLOCK_HZ          ( configCPU_CLOCK_HZ / 8 )
-#elif  VVC_L0
-  #define configCPU_CLOCK_HZ              ( ( unsigned long ) 32000000 )  
-  #define configSYSTICK_CLOCK_HZ          ( configCPU_CLOCK_HZ / 8 )
-#endif
+#define configCPU_CLOCK_HZ              ( ( unsigned long ) 48000000 )
+#define configSYSTICK_CLOCK_HZ          ( configCPU_CLOCK_HZ / 8 )
 #define configTICK_RATE_HZ                      250
 #define configMAX_PRIORITIES                    5
 #define configMINIMAL_STACK_SIZE                128
 #define configMAX_TASK_NAME_LEN                 16
 #define configUSE_16_BIT_TICKS                  0
 #define configIDLE_SHOULD_YIELD                 1
-#define configUSE_TASK_NOTIFICATIONS            0
 #define configUSE_MUTEXES                       0
 #define configUSE_RECURSIVE_MUTEXES             0
 #define configUSE_COUNTING_SEMAPHORES           0
@@ -64,11 +52,7 @@
 /* Memory allocation related definitions. */
 #define configSUPPORT_STATIC_ALLOCATION         0
 #define configSUPPORT_DYNAMIC_ALLOCATION        1
-#if defined(VVC_F0) || defined(VVC_L0)
-  #define configTOTAL_HEAP_SIZE           ( ( size_t ) ( 2 * 1024 ) )
-#else
-  #define configTOTAL_HEAP_SIZE           ( ( size_t ) ( 8 * 1024 ) )
-#endif
+#define configTOTAL_HEAP_SIZE           ( ( size_t ) ( 8 * 1024 ) )
 #define configAPPLICATION_ALLOCATED_HEAP        0
 
 /* Hook function related definitions. */

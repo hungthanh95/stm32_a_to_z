@@ -78,11 +78,13 @@ SECTIONS
         . = ALIGN(4);
         /* Also mark the start/end of the bss section. */
         _sbss = .;
+        __bss_start__ = _sbss;
         *(.bss)
         *(.bss*)
         *(COMMON)
         . = ALIGN(4);
         _ebss = .;
+        __bss_end__ = _ebss;
     } >RAM
 
     /* Space set aside for the application's  heap/stack */
