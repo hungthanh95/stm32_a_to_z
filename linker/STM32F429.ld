@@ -15,6 +15,7 @@ _Min_Leftover_RAM = 0x400;
 
 MEMORY
 {
+    CCMRAM    (xrw)    : ORIGIN = 0x10000000,   LENGTH = 64K /* Core Coupled Memory */
     FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 2048K
     RAM (rxw)       : ORIGIN = 0x20000000, LENGTH = 192K
 }
@@ -44,6 +45,17 @@ SECTIONS
         *(.text)
         *(.text*)
         . = ALIGN(4);
+    } >FLASH
+
+    /* Sections required by the standard libraries */
+    .ARM.extab :
+    {
+        *(.ARM.extab* .gnu.linkonce.armextab.*)
+    } >FLASH
+
+    .ARM :
+    {
+        *(.ARM.exidx*)
     } >FLASH
 
     /* The 'rosdata' section contains read-only data,
@@ -86,6 +98,11 @@ SECTIONS
         _ebss = .;
         __bss_end__ = _ebss;
     } >RAM
+
+    /*Mark the end of statically-allocated RAM. */
+    end = .;
+    _end = end;
+    __end = end;
 
     /* Space set aside for the application's  heap/stack */
     .dynamic_allocations :

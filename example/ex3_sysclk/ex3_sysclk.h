@@ -1,5 +1,5 @@
-#ifndef __EX2_INT_H
-#define __EX2_INT_H
+#ifndef __EX3_SYSCLK_H
+#define __EX3_SYSCLK_H
 
 #include "main.h"
 //Define PLL
@@ -12,4 +12,4 @@
 extern void RunApp(void);
 
 uint64_t Core_Clock_Hz = 48000000;
-#endif /*__EX2_INT_H */
+#endif /*__EX3_SYSCLK_H */
