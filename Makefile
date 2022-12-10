@@ -1,7 +1,7 @@
 TARGET = main
 
 # change this variable when change example
-EXAMPLE = ex5_usart
+EXAMPLE = ex6_usart_extend
 
 # change this variable when change chip device
 FREERTOS_PORTABLE_DEVICE = GCC_ARM_CM4F
