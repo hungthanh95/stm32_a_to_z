@@ -1,7 +1,7 @@
 TARGET = main
 
 # change this variable when change example
-EXAMPLE = ex6_usart_extend
+EXAMPLE = ex5_usart
 
 # change this variable when change chip device
 FREERTOS_PORTABLE_DEVICE = GCC_ARM_CM4F
@@ -49,22 +49,6 @@ CFLAGS += -fmessage-length=0
 # (Set system to ignore semihosted junk)
 CFLAGS += --specs=nosys.specs
 
-# CPPFLAGS += -mcpu=$(MCU_SPEC)
-# CPPFLAGS += -mthumb
-# CPPFLAGS += -mhard-float
-# CPPFLAGS += -mfloat-abi=hard
-# CPPFLAGS += -mfpu=fpv4-sp-d16
-# CPPFLAGS += -Wall
-# CPPFLAGS += -g
-# CPPFLAGS += -Os
-# CPPFLAGS += -fmessage-length=0 -fno-common
-# CPPFLAGS += -ffunction-sections -fdata-sections
-# CPPFLAGS += -fno-exceptions
-# #CPPFLAGS += --specs=nosys.specs
-# CPPFLAGS += -D$(ST_MCU_DEF)
-# CPPFLAGS += -DVVC_$(MCU_CLASS)
-# CPPFLAGS += -DVVC_$(MCU)
-
 # Linker directives
 LSCRIPT = ./linker/$(LD_SCRIPT)
 LFLAGS += -mcpu=$(MCU_SPEC)
@@ -97,7 +81,6 @@ C_SRC += ./freertos/src/timers.c
 C_SRC += ./app/src/main.c
 C_SRC += ./example/$(EXAMPLE)/$(EXAMPLE).c
 
-# CPP_SRC   = ./example/$(EXAMPLE)/util.cpp
 
 INCLUDE += -I./
 INCLUDE += -I./app/include
